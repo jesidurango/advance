@@ -6,4 +6,6 @@ import co.com.advence.advance.v1.entity.UserEntity;
 
 public interface UserDao extends JpaRepository<UserEntity, Integer> {
 
+	UserEntity findByUsername(String username);
+	
 }
