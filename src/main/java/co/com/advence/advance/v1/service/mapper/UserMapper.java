@@ -1,8 +1,9 @@
-package co.com.advence.advance.v1.business.mapper;
+package co.com.advence.advance.v1.service.mapper;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import co.com.advence.advance.v1.entity.RoleEntity;
 import co.com.advence.advance.v1.entity.UserEntity;
 import co.com.advence.advance.v1.model.User;
 
@@ -18,6 +19,21 @@ public class UserMapper {
 		return user;
 	}
 	
+	public static UserEntity getUser(User user) {
+		UserEntity userEntity = new UserEntity();
+		userEntity.setDeleted(user.getDeleted());
+		userEntity.setIdentification(user.getIdentification());
+		userEntity.setName(user.getName());
+		userEntity.setPassword(user.getPassword());
+		userEntity.setUsername(user.getUsername());
+		RoleEntity roleEntity = new RoleEntity();
+		roleEntity.setId(user.getRole().getId());
+		roleEntity.setName(user.getRole().getName());
+		userEntity.setRole(roleEntity);
+		userEntity.setDeleted(user.getDeleted());
+		return userEntity;
+	}
+	
 	public static List<User> getUser(List<UserEntity> userEntities) {
 		List<User> list = userEntities.stream().map(
 				user -> 
@@ -25,5 +41,6 @@ public class UserMapper {
 				).collect(Collectors.toList());
 		return list;
 	}
+	
 	
 }

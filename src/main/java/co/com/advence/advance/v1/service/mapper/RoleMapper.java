@@ -1,4 +1,4 @@
-package co.com.advence.advance.v1.business.mapper;
+package co.com.advence.advance.v1.service.mapper;
 
 import co.com.advence.advance.v1.entity.RoleEntity;
 import co.com.advence.advance.v1.model.Role;

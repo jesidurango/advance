@@ -16,7 +16,6 @@ public class User implements Serializable {
 		private String name;
 		private String username;
 		private String password;
-		private String salt;
 		private String identification;
 		private Role role;
 		private Boolean deleted;
@@ -37,11 +36,6 @@ public class User implements Serializable {
 		
 		public Builder password(String password) {
 			this.password = password;
-			return this;
-		}
-		
-		public Builder salt(String salt) {
-			this.salt = salt;
 			return this;
 		}
 		
@@ -66,7 +60,6 @@ public class User implements Serializable {
 			user.setName(name);
 			user.setUsername(username);
 			user.setPassword(password);
-			user.setSalt(salt);
 			user.setIdentification(identification);
 			user.setRole(role);
 			user.setDeleted(deleted);
@@ -83,7 +76,6 @@ public class User implements Serializable {
 	private String name;
 	private String username;
 	private String password;
-	private String salt;
 	private String identification;
 	private Role role;
 	private Boolean deleted;
