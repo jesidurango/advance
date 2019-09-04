@@ -8,6 +8,10 @@ public interface ProjectService {
 
 	Project save(Project project);
 	
+	boolean delete(Integer id);
+	
+	boolean update(Project project);
+	
 	List<Project> getProject();
 	
 	Project getProject(Integer id);

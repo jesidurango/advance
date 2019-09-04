@@ -28,6 +28,8 @@ public class Project implements Serializable {
 			this.id = id;
 		}
 		
+		public Builder() {}
+		
 		public Builder name(String name) {
 			this.name = name;
 			return this;

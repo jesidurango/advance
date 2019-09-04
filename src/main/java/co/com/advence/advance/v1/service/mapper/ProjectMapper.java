@@ -16,6 +16,7 @@ public class ProjectMapper {
 				.finishDate(projectEntity.getFinishDate())
 				.name(projectEntity.getName())
 				.startDate(projectEntity.getStartDate())
+				.createdBy(UserMapper.getUser(projectEntity.getCreateBy()))
 				.build();
 		return project;
 	}

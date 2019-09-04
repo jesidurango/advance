@@ -21,15 +21,18 @@ public class UserMapper {
 	
 	public static UserEntity getUser(User user) {
 		UserEntity userEntity = new UserEntity();
+		userEntity.setId(user.getId());
 		userEntity.setDeleted(user.getDeleted());
 		userEntity.setIdentification(user.getIdentification());
 		userEntity.setName(user.getName());
 		userEntity.setPassword(user.getPassword());
 		userEntity.setUsername(user.getUsername());
-		RoleEntity roleEntity = new RoleEntity();
-		roleEntity.setId(user.getRole().getId());
-		roleEntity.setName(user.getRole().getName());
-		userEntity.setRole(roleEntity);
+		if (null != user.getRole()) {
+			RoleEntity roleEntity = new RoleEntity();
+			roleEntity.setId(user.getRole().getId());
+			roleEntity.setName(user.getRole().getName());
+			userEntity.setRole(roleEntity);
+		}
 		userEntity.setDeleted(user.getDeleted());
 		return userEntity;
 	}
