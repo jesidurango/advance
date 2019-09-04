@@ -1,5 +1,7 @@
 package co.com.advence.advance.v1.service;
 
+import static java.util.Collections.emptyList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -11,12 +13,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import co.com.advence.advance.v1.dao.UserDao;
-import co.com.advence.advance.v1.entity.ProjectEntity;
 import co.com.advence.advance.v1.entity.UserEntity;
 import co.com.advence.advance.v1.model.User;
 import co.com.advence.advance.v1.service.mapper.UserMapper;
-
-import static java.util.Collections.emptyList;
 
 @Service
 public class UserServiceImpl implements UserDetailsService {
