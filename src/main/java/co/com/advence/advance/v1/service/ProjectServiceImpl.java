@@ -29,19 +29,19 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public boolean delete(Integer id) {
-		Project project = getProject(id);
+		Project project = get(id);
 		project.setDeleted(true);
 		save(project);
 		return true;
 	}
 	
 	@Override
-	public List<Project> getProject() {
+	public List<Project> get() {
 		return ProjectMapper.getProject(projectDao.findByDeleted(false));
 	}
 
 	@Override
-	public Project getProject(Integer id) {
+	public Project get(Integer id) {
 		Optional<ProjectEntity> result = projectDao.findByIdAndDeleted(id, false);
 		Project project = null;
 		if (result.isPresent()) {

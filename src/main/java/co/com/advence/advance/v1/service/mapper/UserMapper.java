@@ -15,6 +15,7 @@ public class UserMapper {
 				.identification(userEntity.getIdentification())
 				.username(userEntity.getUsername())
 				.role(RoleMapper.getRole(userEntity.getRole()))
+				.password(userEntity.getPassword())
 				.build();
 		return user;
 	}

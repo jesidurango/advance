@@ -12,8 +12,8 @@ public interface ProjectService {
 	
 	boolean update(Project project);
 	
-	List<Project> getProject();
+	List<Project> get();
 	
-	Project getProject(Integer id);
+	Project get(Integer id);
 	
 }

@@ -13,8 +13,10 @@ import co.com.advence.advance.v1.entity.PageEntity;
 import co.com.advence.advance.v1.entity.RoleEntity;
 import co.com.advence.advance.v1.model.Menu;
 import co.com.advence.advance.v1.model.MenuOption;
+import co.com.advence.advance.v1.model.Role;
 import co.com.advence.advance.v1.service.interfaces.RoleService;
 import co.com.advence.advance.v1.service.mapper.PageMapper;
+import co.com.advence.advance.v1.service.mapper.RoleMapper;
 
 
 @Service
@@ -50,6 +52,20 @@ public class RoleServiceImpl implements RoleService {
 			menu.setMenuOptions(menuOptions);
 		}
 		return menu;
+	}
+	
+	public List<Role> get() {
+		return RoleMapper.getRole(roleDao.findByDeleted(false));
+	}
+
+	@Override
+	public Role get(Integer id) {
+		Optional<RoleEntity> result = roleDao.findById(id);
+		Role role = null;
+		if (result.isPresent()) {
+			role = RoleMapper.getRole(result.get());
+		}
+		return role;
 	}
 
 }

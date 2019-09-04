@@ -12,13 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.monitorjbl.json.JsonView;
-import com.monitorjbl.json.JsonViewModule;
-import com.monitorjbl.json.Match;
 
 import co.com.advence.advance.v1.model.Project;
 import co.com.advence.advance.v1.service.interfaces.ProjectService;
+import co.com.advence.advance.v1.util.JsonUtil;
 
 @RestController
 @RequestMapping(path="/v1")
@@ -27,37 +24,46 @@ public class ProjectController {
 	@Autowired
 	private ProjectService projectService;
 	
-	private String JsonExclude(Object object) throws JsonProcessingException {
-		ObjectMapper mapper = new ObjectMapper().registerModule(new JsonViewModule());
-		String json = mapper.writeValueAsString(
-				JsonView.with(object).onClass(
-						Project.class, Match.match().exclude(
-								"createdBy.role",
-								"createdBy.name",
-								"createdBy.username",
-								"createdBy.identification"
-								)
-						)
-				);
-		return json;
-	}
-	
 	@PostMapping(path = "/project", produces = "application/json")
-	public String save(@RequestBody Project project) throws JsonProcessingException {
-		return JsonExclude(projectService.save(project));
+	public Project save(@RequestBody Project project) throws JsonProcessingException {
+		return (Project) JsonUtil.jsonExclude(
+				projectService.save(project), 
+				Project.class, 
+				"createdBy.role",
+				"createdBy.name",
+				"createdBy.username",
+				"createdBy.identification").returnValue();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@GetMapping(path = "/project", produces = "application/json")
-	public String getProjects() throws JsonProcessingException {
-		List<Project> list = projectService.getProject();
-		String json = JsonExclude(list);
-		return json;
+	public List<Project> getProjects() throws JsonProcessingException {
+		List<Project> list = projectService.get();
+		if (null != list && !list.isEmpty()) {
+			list = (List<Project>) JsonUtil.jsonExclude(
+					list, 
+					Project.class,
+					"createdBy.role",
+					"createdBy.name",
+					"createdBy.username",
+					"createdBy.identification").returnValue();
+		}
+		return list;
 	}
 	
 	@GetMapping(path = "/project/{id}", produces = "application/json")
-	public String getProject(@PathVariable Integer id) throws JsonProcessingException {
-		String json = JsonExclude(projectService.getProject(id));
-		return json;
+	public Project getProject(@PathVariable Integer id) throws JsonProcessingException {
+		Project project = projectService.get(id);
+		if (null != project) {
+			project = (Project) JsonUtil.jsonExclude(
+					project, 
+					Project.class,
+					"createdBy.role",
+					"createdBy.name",
+					"createdBy.username",
+					"createdBy.identification").returnValue();
+		}
+		return project;
 	}
 	
 	@DeleteMapping("/project/{id}")
