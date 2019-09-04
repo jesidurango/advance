@@ -1,6 +1,7 @@
 package co.com.advence.advance.v1.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Data;
 
@@ -15,6 +16,7 @@ public class Role implements Serializable {
 		private Integer id;
 		private String name;
 		private Boolean deleted;
+		private List<Page> pages;
 		
 		public Builder(Integer id) {
 			this.id = id;
@@ -30,17 +32,27 @@ public class Role implements Serializable {
 			return this;
 		}
 		
+		public Builder pages(List<Page> pages) {
+			this.pages = pages;
+			return this;
+		}
+		
 		public Role build() {
 			Role role = new Role();
 			role.setId(id);
 			role.setName(name);
 			role.setDeleted(deleted);
+			role.setPages(pages);
 			return role;
 		}
 		
 	}
 	
+	private Role() {}
+	
 	private Integer id;
 	private String name;
 	private Boolean deleted;
+	
+	private List<Page> pages;
 }
