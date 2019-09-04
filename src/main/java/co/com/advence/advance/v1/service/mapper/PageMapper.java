@@ -13,6 +13,7 @@ public class PageMapper {
 				.name(pageEntity.getName())
 				.url(pageEntity.getUrl())
 				.father(pageEntity.getFather())
+				.order(pageEntity.getOrder())
 				.build();
 		return page;
 	}

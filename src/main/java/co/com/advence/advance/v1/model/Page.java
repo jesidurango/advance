@@ -17,6 +17,7 @@ public class Page implements Serializable {
 		private String name;
 		private String url;
 		private Integer father;
+		private Integer order;
 		
 		public Builder(Integer id) {
 			this.id = id;
@@ -39,12 +40,18 @@ public class Page implements Serializable {
 			return this;
 		}
 		
+		public Builder order(Integer order) {
+			this.order = order;
+			return this;
+		}
+		
 		public Page build() {
 			Page page = new Page();
 			page.setId(id);
 			page.setName(name);
 			page.setUrl(url);
 			page.setFather(father);
+			page.setOrder(order);
 			return page;
 		}
 		
@@ -56,5 +63,6 @@ public class Page implements Serializable {
 	private String name;
 	private String url;
 	private Integer father;
+	private Integer order;
 	
 }

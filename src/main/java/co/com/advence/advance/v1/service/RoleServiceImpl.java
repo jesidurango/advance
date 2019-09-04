@@ -43,6 +43,7 @@ public class RoleServiceImpl implements RoleService {
 					List<PageEntity> pages = pagesGrouped.get(page.getId());
 					MenuOption menuOption = new MenuOption();
 					pages.add(page);
+					pages.sort((page1, page2) -> page1.getOrder().compareTo(page2.getOrder()));
 					menuOption.setPages(PageMapper.getPage(pages));
 					return menuOption;
 				}).collect(Collectors.toList());

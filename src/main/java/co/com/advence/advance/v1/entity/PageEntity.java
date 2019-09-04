@@ -22,6 +22,7 @@ public class PageEntity {
 	private String name;
 	private String url;
 	private Integer father;
+	private Integer order;
 	
 	@ManyToMany(mappedBy = "pagesByRole")
 	private List<RoleEntity> rolesByPage;
