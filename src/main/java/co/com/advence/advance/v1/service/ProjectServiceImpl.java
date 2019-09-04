@@ -21,6 +21,7 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public Project save(Project project) {
 		ProjectEntity projectEntity = ProjectMapper.getProject(project);
+		projectEntity.setDeleted(false);
 		projectDao.save(projectEntity);
 		project.setId(projectEntity.getId());
 		return project;

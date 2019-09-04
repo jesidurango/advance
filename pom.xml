@@ -64,7 +64,11 @@
 			<artifactId>java-jwt</artifactId>
 			<version>3.8.2</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.monitorjbl</groupId>
+			<artifactId>json-view</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 
 	</dependencies>
 	<build>

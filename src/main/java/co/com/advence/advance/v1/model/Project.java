@@ -3,6 +3,8 @@ package co.com.advence.advance.v1.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -87,6 +89,7 @@ public class Project implements Serializable {
 	private Date finishDate;
 	private String code;
 	private String description;
+	@JsonIgnore
 	private Boolean deleted;
 	
 	private User createdBy;

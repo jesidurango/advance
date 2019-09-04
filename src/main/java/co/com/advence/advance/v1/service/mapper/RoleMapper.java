@@ -9,6 +9,7 @@ public class RoleMapper {
 		Role role = new Role.Builder(roleEntity.getId())
 				.name(roleEntity.getName())
 				.deleted(roleEntity.getDeleted())
+				.pages(PageMapper.getPage(roleEntity.getPagesByRole()))
 				.build();
 		return role;
 	}

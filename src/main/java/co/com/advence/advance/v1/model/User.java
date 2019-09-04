@@ -2,6 +2,8 @@ package co.com.advence.advance.v1.model;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -75,8 +77,10 @@ public class User implements Serializable {
 	private Integer id;
 	private String name;
 	private String username;
+	@JsonIgnore
 	private String password;
 	private String identification;
 	private Role role;
+	@JsonIgnore
 	private Boolean deleted;
 }

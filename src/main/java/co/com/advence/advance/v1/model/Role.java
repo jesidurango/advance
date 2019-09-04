@@ -3,6 +3,8 @@ package co.com.advence.advance.v1.model;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -52,6 +54,7 @@ public class Role implements Serializable {
 	
 	private Integer id;
 	private String name;
+	@JsonIgnore
 	private Boolean deleted;
 	
 	private List<Page> pages;
