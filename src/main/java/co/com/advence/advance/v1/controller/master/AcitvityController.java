@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import co.com.advence.advance.v1.model.Activity;
-import co.com.advence.advance.v1.model.Project;
 import co.com.advence.advance.v1.service.interfaces.ActivityService;
 import co.com.advence.advance.v1.util.JsonUtil;
 
@@ -29,30 +28,30 @@ public class AcitvityController {
 	public Activity save(@RequestBody Activity activity) throws JsonProcessingException {
 		return (Activity) JsonUtil.jsonExclude(
 				activityService.save(activity), 
-				Project.class, 
+				Activity.class, 
 				"deleted").returnValue();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@GetMapping(path = "/activity", produces = "application/json")
-	public List<Activity> getProjects() throws JsonProcessingException {
+	public List<Activity> getActivities() throws JsonProcessingException {
 		List<Activity> list = activityService.get();
 		if (null != list && !list.isEmpty()) {
 			list = (List<Activity>) JsonUtil.jsonExclude(
 					list, 
-					Project.class,
+					Activity.class,
 					"deleted").returnValue();
 		}
 		return list;
 	}
 	
 	@GetMapping(path = "/activity/{id}", produces = "application/json")
-	public Activity getProject(@PathVariable Integer id) throws JsonProcessingException {
+	public Activity getActivity(@PathVariable Integer id) throws JsonProcessingException {
 		Activity activity = activityService.get(id);
 		if (null != activity) {
 			activity = (Activity) JsonUtil.jsonExclude(
 					activity,
-					Project.class,
+					Activity.class,
 					"deleted").returnValue();
 		}
 		return activity;

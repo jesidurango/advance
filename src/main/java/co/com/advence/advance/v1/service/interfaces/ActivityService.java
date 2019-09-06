@@ -14,4 +14,6 @@ public interface ActivityService {
 	
 	boolean delete(Integer id);
 	
+	boolean update(Activity project);
+	
 }

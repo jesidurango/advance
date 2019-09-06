@@ -13,6 +13,7 @@ public class ActivityMapper {
 		activityEntity.setId(activity.getId());
 		activityEntity.setName(activity.getName());
 		activityEntity.setDescription(activity.getDescription());
+		activityEntity.setDeleted(activity.getDeleted());
 		return activityEntity;
 	}
 	
@@ -20,6 +21,7 @@ public class ActivityMapper {
 		Activity activity = new Activity.Builder(activityEntity.getId())
 				.name(activityEntity.getName())
 				.description(activityEntity.getDescription())
+				.deleted(activityEntity.getDeleted())
 				.build();
 		return activity;
 	}

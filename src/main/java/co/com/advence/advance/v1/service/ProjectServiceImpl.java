@@ -36,7 +36,7 @@ public class ProjectServiceImpl implements ProjectService {
 	public boolean delete(Integer id) {
 		Project project = get(id);
 		project.setDeleted(true);
-		save(project);
+		update(project);
 		return true;
 	}
 	
@@ -57,7 +57,8 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public boolean update(Project project) {
-		// TODO Auto-generated method stub
+		ProjectEntity projectEntity = ProjectMapper.getProject(project);
+		projectDao.save(projectEntity);
 		return false;
 	}
 

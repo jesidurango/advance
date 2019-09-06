@@ -45,8 +45,15 @@ public class ActivityServiceImpl implements ActivityService {
 	public boolean delete(Integer id) {
 		Activity activity = get(id);
 		activity.setDeleted(true);
-		save(activity);
+		update(activity);
 		return true;
+	}
+	
+	@Override
+	public boolean update(Activity activity) {
+		ActivityEntity activityEntity = ActivityMapper.getActivity(activity);
+		activityDao.save(activityEntity);
+		return false;
 	}
 
 }
