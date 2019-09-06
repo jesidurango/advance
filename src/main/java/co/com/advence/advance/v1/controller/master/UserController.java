@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import co.com.advence.advance.v1.model.Project;
 import co.com.advence.advance.v1.model.User;
 import co.com.advence.advance.v1.service.UserServiceImpl;
+import co.com.advence.advance.v1.service.interfaces.ProjectService;
 import co.com.advence.advance.v1.util.JsonUtil;
 
 @RestController
@@ -24,6 +26,9 @@ public class UserController {
 
 	@Autowired
 	private UserServiceImpl userBisiness;
+	
+	@Autowired
+	private ProjectService projectService;
 	
 	@PostMapping("/user/sign-up")
     public void signUp(@RequestBody User user) {
@@ -47,6 +52,18 @@ public class UserController {
 			user = (User) JsonUtil.jsonExclude(userBisiness.get(id), User.class, "password", "role.pages").returnValue();
 		}
 		return user;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@GetMapping(
+            path="/user/{id}/project",
+            produces="application/json")
+	public List<Project> getProjectsByUser(@PathVariable Integer id) throws JsonProcessingException {
+		List<Project> projects = projectService.getByUser(id);
+		if (null != projects && !projects.isEmpty()) {
+			projects = (List<Project>) JsonUtil.jsonExclude(projects, Project.class, "createdBy").returnValue();
+		}
+		return projects;
 	}
 	
 }

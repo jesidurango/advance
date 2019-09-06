@@ -7,8 +7,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.monitorjbl.json.JsonViewSupportFactoryBean;
 
+import co.com.advence.advance.v1.service.ActivityServiceImpl;
 import co.com.advence.advance.v1.service.ProjectServiceImpl;
 import co.com.advence.advance.v1.service.RoleServiceImpl;
+import co.com.advence.advance.v1.service.interfaces.ActivityService;
 import co.com.advence.advance.v1.service.interfaces.ProjectService;
 import co.com.advence.advance.v1.service.interfaces.RoleService;
 
@@ -33,6 +35,11 @@ public class AdvenceServiceApp {
 		return new ProjectServiceImpl();
 	}
 
+	@Bean
+	public ActivityService activityService() {
+		return new ActivityServiceImpl();
+	}
+	
 	@Bean
 	public JsonViewSupportFactoryBean views() {
 		return new JsonViewSupportFactoryBean();

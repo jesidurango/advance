@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.com.advence.advance.v1.dao.ProjectDao;
+import co.com.advence.advance.v1.dao.UserDao;
 import co.com.advence.advance.v1.entity.ProjectEntity;
+import co.com.advence.advance.v1.entity.UserEntity;
 import co.com.advence.advance.v1.model.Project;
 import co.com.advence.advance.v1.service.interfaces.ProjectService;
 import co.com.advence.advance.v1.service.mapper.ProjectMapper;
@@ -17,6 +19,9 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Autowired
 	private ProjectDao projectDao;
+	
+	@Autowired
+	private UserDao userDao;
 
 	@Override
 	public Project save(Project project) {
@@ -54,6 +59,18 @@ public class ProjectServiceImpl implements ProjectService {
 	public boolean update(Project project) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<Project> getByUser(Integer userId) {
+		Optional<UserEntity> result = userDao.findByIdAndDeleted(userId, false);
+		List<Project> projects = null;
+		if (result.isPresent()) {
+			if (null != result.get().getProjects() && !result.get().getProjects().isEmpty()) {
+				projects = ProjectMapper.getProject(result.get().getProjects());
+			}
+		}
+		return projects;
 	}
 	
 }

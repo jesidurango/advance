@@ -14,6 +14,10 @@ public interface ProjectService {
 	
 	List<Project> get();
 	
+	List<Project> getByUser(Integer userId);
+	
 	Project get(Integer id);
+	
+	
 	
 }

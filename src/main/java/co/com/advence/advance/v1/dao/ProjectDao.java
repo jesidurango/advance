@@ -11,6 +11,6 @@ public interface ProjectDao extends JpaRepository<ProjectEntity, Integer> {
 
 	List<ProjectEntity> findByDeleted(Boolean deleted);
 	
-	Optional<ProjectEntity> findByIdAndDeleted(Integer is, Boolean deleted);
+	Optional<ProjectEntity> findByIdAndDeleted(Integer id, Boolean deleted);
 	
 }

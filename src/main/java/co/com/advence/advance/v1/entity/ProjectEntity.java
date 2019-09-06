@@ -1,6 +1,7 @@
 package co.com.advence.advance.v1.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -34,5 +36,8 @@ public class ProjectEntity {
 	@ManyToOne
 	@JoinColumn(name="create_by")
 	private UserEntity createBy;
+	
+	@ManyToMany(mappedBy = "projects")
+	private List<UserEntity> usersByProject;
 	
 }

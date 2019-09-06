@@ -32,6 +32,7 @@ public class ProjectController {
 				"createdBy.role",
 				"createdBy.name",
 				"createdBy.username",
+				"createdBy.password",
 				"createdBy.identification").returnValue();
 	}
 	
@@ -46,6 +47,7 @@ public class ProjectController {
 					"createdBy.role",
 					"createdBy.name",
 					"createdBy.username",
+					"createdBy.password",
 					"createdBy.identification").returnValue();
 		}
 		return list;
@@ -61,6 +63,7 @@ public class ProjectController {
 					"createdBy.role",
 					"createdBy.name",
 					"createdBy.username",
+					"createdBy.password",
 					"createdBy.identification").returnValue();
 		}
 		return project;
