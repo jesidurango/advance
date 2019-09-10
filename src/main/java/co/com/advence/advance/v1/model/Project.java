@@ -88,7 +88,7 @@ public class Project implements Serializable {
 	
 	private Integer id;
 	@NotNull
-	@Size(max = 4, message="El nombre debe tener maximo 150 caracteres")
+	@Size(max = 150, message="El nombre debe tener maximo 150 caracteres")
 	private String name;
 	@NotNull
 	private Date startDate;
