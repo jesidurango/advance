@@ -3,6 +3,9 @@ package co.com.advence.advance.v1.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
@@ -84,7 +87,10 @@ public class Project implements Serializable {
 	private Project() {}
 	
 	private Integer id;
+	@NotNull
+	@Size(max = 4, message="El nombre debe tener maximo 150 caracteres")
 	private String name;
+	@NotNull
 	private Date startDate;
 	private Date finishDate;
 	private String code;

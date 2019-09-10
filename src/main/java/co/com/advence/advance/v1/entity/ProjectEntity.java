@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -39,5 +40,12 @@ public class ProjectEntity {
 	
 	@ManyToMany(mappedBy = "projects")
 	private List<UserEntity> usersByProject;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "tr_activities_projects", 
+			joinColumns = @JoinColumn(name = "project_id"), 
+			inverseJoinColumns = @JoinColumn(name = "activity_id"))
+	private List<ActivityEntity> activities;
 	
 }

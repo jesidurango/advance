@@ -1,9 +1,12 @@
 package co.com.advence.advance.v1.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -19,5 +22,8 @@ public class ActivityEntity {
 	private String name;
 	private String description;
 	private Boolean deleted;
+	
+	@ManyToMany(mappedBy = "activities")
+	private List<ProjectEntity> projects;
 	
 }

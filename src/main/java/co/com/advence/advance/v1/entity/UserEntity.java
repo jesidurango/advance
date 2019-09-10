@@ -41,4 +41,10 @@ public class UserEntity {
 			inverseJoinColumns = @JoinColumn(name = "project_id"))
 	private List<ProjectEntity> projects;
 	
+	public UserEntity() {}
+	
+	public UserEntity(Integer id) {
+		this.id = id;
+	}
+	
 }

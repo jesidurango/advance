@@ -2,7 +2,11 @@ package co.com.advence.advance.v1.controller.master;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,21 +23,22 @@ import co.com.advence.advance.v1.util.JsonUtil;
 
 @RestController
 @RequestMapping(path="/v1")
+@Validated
 public class ProjectController {
 
 	@Autowired
 	private ProjectService projectService;
 	
 	@PostMapping(path = "/project", produces = "application/json")
-	public Project save(@RequestBody Project project) throws JsonProcessingException {
-		return (Project) JsonUtil.jsonExclude(
+	public ResponseEntity<Project> save(@RequestBody @Valid Project project) throws JsonProcessingException {
+		return ResponseEntity.ok().body((Project) JsonUtil.jsonExclude(
 				projectService.save(project), 
 				Project.class, 
 				"createdBy.role",
 				"createdBy.name",
 				"createdBy.username",
 				"createdBy.password",
-				"createdBy.identification").returnValue();
+				"createdBy.identification").returnValue());
 	}
 	
 	@SuppressWarnings("unchecked")
