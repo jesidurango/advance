@@ -8,21 +8,21 @@ import co.com.advence.advance.v1.model.Role;
 
 public class RoleMapper {
 
+	private RoleMapper() {}
+	
 	public static Role getRole(RoleEntity roleEntity) {
-		Role role = new Role.Builder(roleEntity.getId())
+		return new Role.Builder(roleEntity.getId())
 				.name(roleEntity.getName())
 				.deleted(roleEntity.getDeleted())
 				.pages(PageMapper.getPage(roleEntity.getPagesByRole()))
 				.build();
-		return role;
 	}
 	
 	public static List<Role> getRole(List<RoleEntity> rolesEntity) {
-		List<Role> list = rolesEntity.stream().map(
+		return rolesEntity.stream().map(
 				role ->
 					getRole(role)
 				).collect(Collectors.toList());
-		return list;
 	}
 	
 }

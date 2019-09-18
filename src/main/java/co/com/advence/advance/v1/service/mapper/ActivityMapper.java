@@ -8,6 +8,8 @@ import co.com.advence.advance.v1.model.Activity;
 
 public class ActivityMapper {
 
+	private ActivityMapper() {}
+	
 	public static ActivityEntity getActivity(Activity activity) {
 		ActivityEntity activityEntity = new ActivityEntity();
 		activityEntity.setId(activity.getId());
@@ -18,20 +20,18 @@ public class ActivityMapper {
 	}
 	
 	public static Activity getActivity(ActivityEntity activityEntity) {
-		Activity activity = new Activity.Builder(activityEntity.getId())
+		return new Activity.Builder(activityEntity.getId())
 				.name(activityEntity.getName())
 				.description(activityEntity.getDescription())
 				.deleted(activityEntity.getDeleted())
 				.build();
-		return activity;
 	}
 	
 	public static List<Activity> getActivity(List<ActivityEntity> activitiesEntity) {
-		List<Activity> list = activitiesEntity.stream().map(
+		return activitiesEntity.stream().map(
 				activityEntity -> 
 					getActivity(activityEntity)
 				).collect(Collectors.toList());
-		return list;
 	}
 	
 }

@@ -7,26 +7,27 @@ import co.com.advence.advance.v1.entity.ProjectEntity;
 import co.com.advence.advance.v1.model.Project;
 
 public class ProjectMapper {
+	
+	private ProjectMapper() {}
 
 	public static Project getProject(ProjectEntity projectEntity) {
-		Project project = new Project.Builder(projectEntity.getId())
+		return new Project.Builder(projectEntity.getId())
 				.code(projectEntity.getCode())
 				.deleted(projectEntity.getDeleted())
 				.description(projectEntity.getDescription())
 				.finishDate(projectEntity.getFinishDate())
 				.name(projectEntity.getName())
 				.startDate(projectEntity.getStartDate())
+				.address(projectEntity.getAddress())
 				.createdBy(UserMapper.getUser(projectEntity.getCreateBy()))
 				.build();
-		return project;
 	}
 	
 	public static List<Project> getProject(List<ProjectEntity> projectsEntity) {
-		List<Project> list = projectsEntity.stream().map(
+		return projectsEntity.stream().map(
 				project -> 
 					getProject(project)
 				).collect(Collectors.toList());
-		return list;
 	}
 	
 	public static ProjectEntity getProject(Project project) {
@@ -39,6 +40,7 @@ public class ProjectMapper {
 		projectEntity.setId(project.getId());
 		projectEntity.setName(project.getName());
 		projectEntity.setStartDate(project.getStartDate());
+		projectEntity.setAddress(project.getAddress());
 		return projectEntity;
 	}
 	

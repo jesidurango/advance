@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
         UserEntity applicationUser = userDao.findByUsername(username);
         if (applicationUser == null) {
             throw new UsernameNotFoundException(username);

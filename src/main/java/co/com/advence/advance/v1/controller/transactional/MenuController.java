@@ -20,8 +20,7 @@ public class MenuController {
             path="/menu/{roleId}",
             produces="application/json")
 	public Menu getMenu(@PathVariable Integer roleId) {
-		Menu menu = roleService.getMenuByRole(roleId);
-		return menu;
+		return roleService.getMenuByRole(roleId);
 	}
 	
 }

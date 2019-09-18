@@ -112,10 +112,8 @@ public class ProjectServiceImpl implements ProjectService {
 	public List<Project> getByUser(Integer userId) {
 		Optional<UserEntity> result = userDao.findByIdAndDeleted(userId, false);
 		List<Project> projects = null;
-		if (result.isPresent()) {
-			if (null != result.get().getProjects() && !result.get().getProjects().isEmpty()) {
-				projects = ProjectMapper.getProject(result.get().getProjects());
-			}
+		if (result.isPresent() && null != result.get().getProjects() && !result.get().getProjects().isEmpty()) {
+			projects = ProjectMapper.getProject(result.get().getProjects());
 		}
 		return projects;
 	}

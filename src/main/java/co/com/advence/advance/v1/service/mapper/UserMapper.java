@@ -9,15 +9,16 @@ import co.com.advence.advance.v1.model.User;
 
 public class UserMapper {
 
+	private UserMapper() {}
+	
 	public static User getUser(UserEntity userEntity) {
-		User user = new User.Builder(userEntity.getId())
+		return new User.Builder(userEntity.getId())
 				.name(userEntity.getName())
 				.identification(userEntity.getIdentification())
 				.username(userEntity.getUsername())
 				.role(RoleMapper.getRole(userEntity.getRole()))
 				.password(userEntity.getPassword())
 				.build();
-		return user;
 	}
 	
 	public static UserEntity getUser(User user) {
@@ -39,11 +40,10 @@ public class UserMapper {
 	}
 	
 	public static List<User> getUser(List<UserEntity> userEntities) {
-		List<User> list = userEntities.stream().map(
+		return userEntities.stream().map(
 				user -> 
 					getUser(user)
 				).collect(Collectors.toList());
-		return list;
 	}
 	
 	

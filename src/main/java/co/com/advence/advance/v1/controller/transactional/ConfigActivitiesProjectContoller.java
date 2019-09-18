@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import co.com.advence.advance.v1.model.ActivityProject;
 import co.com.advence.advance.v1.service.interfaces.ProjectService;
 
@@ -22,7 +20,7 @@ public class ConfigActivitiesProjectContoller {
 	private ProjectService projectService;
 	
 	@PostMapping(path = "/activity/project", produces = "application/json")
-	public ResponseEntity<String> save(@RequestBody @Valid ActivityProject activityProject) throws JsonProcessingException {
+	public ResponseEntity<String> save(@RequestBody @Valid ActivityProject activityProject) {
 		return ResponseEntity.ok().body(
 				projectService.saveActivityByProject(activityProject));
 	}

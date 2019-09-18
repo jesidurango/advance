@@ -23,6 +23,7 @@ public class Project implements Serializable {
 		private String name;
 		private Date startDate;
 		private Date finishDate;
+		private String address;
 		private String code;
 		private String description;
 		private Boolean deleted;
@@ -70,6 +71,11 @@ public class Project implements Serializable {
 			return this;
 		}
 		
+		public Builder address(String address) {
+			this.address = address;
+			return this;
+		}
+		
 		public Project build() {
 			Project project = new Project();
 			project.setCode(code);
@@ -80,6 +86,7 @@ public class Project implements Serializable {
 			project.setName(name);
 			project.setStartDate(startDate);
 			project.setCreatedBy(createdBy);
+			project.setAddress(address);
 			return project;
 		}
 	}
@@ -93,6 +100,7 @@ public class Project implements Serializable {
 	@NotNull
 	private Date startDate;
 	private Date finishDate;
+	private String address;
 	private String code;
 	private String description;
 	@JsonIgnore

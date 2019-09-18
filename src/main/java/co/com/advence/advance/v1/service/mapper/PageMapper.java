@@ -8,22 +8,22 @@ import co.com.advence.advance.v1.model.Page;
 
 public class PageMapper {
 
+	private PageMapper() {}
+	
 	public static Page getPage(PageEntity pageEntity) {
-		Page page = new Page.Builder(pageEntity.getId())
+		return new Page.Builder(pageEntity.getId())
 				.name(pageEntity.getName())
 				.url(pageEntity.getUrl())
 				.father(pageEntity.getFather())
 				.order(pageEntity.getOrder())
 				.build();
-		return page;
 	}
 	
 	public static List<Page> getPage(List<PageEntity> pagesEntity) {
-		List<Page> list = pagesEntity.stream().map(
+		return pagesEntity.stream().map(
 				page ->
 					getPage(page)
 				).collect(Collectors.toList());
-		return list;
 	}
 	
 }

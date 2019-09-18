@@ -30,6 +30,7 @@ public class ProjectEntity {
 	private Date startDate;
 	@Column(name = "finish_date")
 	private Date finishDate;
+	private String address;
 	private String code;
 	private String description;
 	private Boolean deleted;
