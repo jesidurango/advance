@@ -25,8 +25,7 @@ public class ProjectMapper {
 	
 	public static List<Project> getProject(List<ProjectEntity> projectsEntity) {
 		return projectsEntity.stream().map(
-				project -> 
-					getProject(project)
+				ProjectMapper::getProject
 				).collect(Collectors.toList());
 	}
 	

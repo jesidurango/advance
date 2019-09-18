@@ -20,8 +20,7 @@ public class RoleMapper {
 	
 	public static List<Role> getRole(List<RoleEntity> rolesEntity) {
 		return rolesEntity.stream().map(
-				role ->
-					getRole(role)
+				RoleMapper::getRole
 				).collect(Collectors.toList());
 	}
 	

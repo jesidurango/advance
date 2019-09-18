@@ -29,8 +29,7 @@ public class ActivityMapper {
 	
 	public static List<Activity> getActivity(List<ActivityEntity> activitiesEntity) {
 		return activitiesEntity.stream().map(
-				activityEntity -> 
-					getActivity(activityEntity)
+				ActivityMapper::getActivity
 				).collect(Collectors.toList());
 	}
 	

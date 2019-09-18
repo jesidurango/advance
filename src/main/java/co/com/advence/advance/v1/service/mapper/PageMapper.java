@@ -21,8 +21,7 @@ public class PageMapper {
 	
 	public static List<Page> getPage(List<PageEntity> pagesEntity) {
 		return pagesEntity.stream().map(
-				page ->
-					getPage(page)
+				PageMapper::getPage
 				).collect(Collectors.toList());
 	}
 	

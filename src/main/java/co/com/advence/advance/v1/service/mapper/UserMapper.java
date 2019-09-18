@@ -41,8 +41,7 @@ public class UserMapper {
 	
 	public static List<User> getUser(List<UserEntity> userEntities) {
 		return userEntities.stream().map(
-				user -> 
-					getUser(user)
+				UserMapper::getUser
 				).collect(Collectors.toList());
 	}
 	
