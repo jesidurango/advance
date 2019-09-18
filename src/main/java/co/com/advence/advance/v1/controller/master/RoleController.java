@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import co.com.advence.advance.v1.model.Role;
 import co.com.advence.advance.v1.service.interfaces.RoleService;
 import co.com.advence.advance.v1.util.JsonUtil;
@@ -25,14 +23,14 @@ public class RoleController {
 	@GetMapping(
             path="/role",
             produces="application/json")
-	public List<Role> getRoles() throws JsonProcessingException {
+	public List<Role> getRoles() {
 		return (List<Role>) JsonUtil.jsonExclude(roleService.get(), Role.class, "pages").returnValue();
 	}
 	
 	@GetMapping(
             path="/role/{id}",
             produces="application/json")
-	public Role getRole(@PathVariable Integer id) throws JsonProcessingException {
+	public Role getRole(@PathVariable Integer id) {
 		Role role = roleService.get(id);
 		if (null != role) {
 			role = (Role) JsonUtil.jsonExclude(role, Role.class, "pages").returnValue();

@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import co.com.advence.advance.v1.model.Project;
 import co.com.advence.advance.v1.model.User;
 import co.com.advence.advance.v1.service.UserServiceImpl;
@@ -39,14 +37,14 @@ public class UserController {
 	@GetMapping(
             path="/user",
             produces="application/json")
-	public List<User> getUsers(final HttpServletRequest request) throws JsonProcessingException {
+	public List<User> getUsers(final HttpServletRequest request) {
 		return (List<User>) JsonUtil.jsonExclude(userBisiness.get(), User.class, "password", "role.pages").returnValue();
 	}
 	
 	@GetMapping(
             path="/user/{id}",
             produces="application/json")
-	public User getUser(@PathVariable Integer id) throws JsonProcessingException {
+	public User getUser(@PathVariable Integer id) {
 		User user = userBisiness.get(id);
 		if (null != user) {
 			user = (User) JsonUtil.jsonExclude(userBisiness.get(id), User.class, "password", "role.pages").returnValue();
@@ -58,7 +56,7 @@ public class UserController {
 	@GetMapping(
             path="/user/{id}/project",
             produces="application/json")
-	public List<Project> getProjectsByUser(@PathVariable Integer id) throws JsonProcessingException {
+	public List<Project> getProjectsByUser(@PathVariable Integer id) {
 		List<Project> projects = projectService.getByUser(id);
 		if (null != projects && !projects.isEmpty()) {
 			projects = (List<Project>) JsonUtil.jsonExclude(projects, Project.class, "createdBy").returnValue();

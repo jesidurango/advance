@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import co.com.advence.advance.v1.model.Project;
 import co.com.advence.advance.v1.service.interfaces.ProjectService;
 import co.com.advence.advance.v1.util.JsonUtil;
@@ -30,7 +28,7 @@ public class ProjectController {
 	private ProjectService projectService;
 	
 	@PostMapping(path = "/project", produces = "application/json")
-	public ResponseEntity<Project> save(@RequestBody @Valid Project project) throws JsonProcessingException {
+	public ResponseEntity<Project> save(@RequestBody @Valid Project project) {
 		return ResponseEntity.ok().body((Project) JsonUtil.jsonExclude(
 				projectService.save(project), 
 				Project.class, 
@@ -43,7 +41,7 @@ public class ProjectController {
 	
 	@SuppressWarnings("unchecked")
 	@GetMapping(path = "/project", produces = "application/json")
-	public List<Project> getProjects() throws JsonProcessingException {
+	public List<Project> getProjects() {
 		List<Project> list = projectService.get();
 		if (null != list && !list.isEmpty()) {
 			list = (List<Project>) JsonUtil.jsonExclude(
@@ -59,7 +57,7 @@ public class ProjectController {
 	}
 	
 	@GetMapping(path = "/project/{id}", produces = "application/json")
-	public Project getProject(@PathVariable Integer id) throws JsonProcessingException {
+	public Project getProject(@PathVariable Integer id) {
 		Project project = projectService.get(id);
 		if (null != project) {
 			project = (Project) JsonUtil.jsonExclude(
