@@ -13,6 +13,5 @@ public interface LocationDao extends JpaRepository<LocationEntity, Integer> {
 	@Query("SELECT l FROM LocationEntity l WHERE l.user.id = :userId ORDER BY l.timestamp DESC")
 	List<LocationEntity> findByUserId(@Param("userId") Integer userId);
 	
-	@Query("SELECT l FROM LocationEntity l WHERE l.user.id = :userId ORDER BY l.timestamp DESC")
-	LocationEntity findLatestByUserId(@Param("userId") Integer userId);
+	LocationEntity findFirstByUserIdOrderByTimestampDesc(Integer userId);
 }

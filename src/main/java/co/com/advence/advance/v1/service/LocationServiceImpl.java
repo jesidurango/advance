@@ -18,10 +18,16 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public Location save(Location location) {
-		if (location.getTimestamp() == null) {
-			location.setTimestamp(LocalDateTime.now());
-		}
-		LocationEntity entity = LocationMapper.mapModelToEntity(location);
+		LocalDateTime timestamp = location.getTimestamp() != null ? location.getTimestamp() : LocalDateTime.now();
+		Location locationWithTimestamp = new Location.Builder(location.getId())
+			.latitude(location.getLatitude())
+			.longitude(location.getLongitude())
+			.timestamp(timestamp)
+			.userId(location.getUserId())
+			.userName(location.getUserName())
+			.build();
+		
+		LocationEntity entity = LocationMapper.mapModelToEntity(locationWithTimestamp);
 		LocationEntity saved = locationDao.save(entity);
 		return LocationMapper.mapEntityToModel(saved);
 	}
@@ -34,7 +40,7 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public Location getLatestByUserId(Integer userId) {
-		LocationEntity entity = locationDao.findLatestByUserId(userId);
+		LocationEntity entity = locationDao.findFirstByUserIdOrderByTimestampDesc(userId);
 		return LocationMapper.mapEntityToModel(entity);
 	}
 }
